@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Font Selector</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Cairo&family=Roboto&display=swap">
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: black;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <label for="fontSelect">Select Font:</label>
+  <select id="fontSelect">
+    <option value="Open">Open Sans</option>
+    <option value="Cairo">Cairo</option>
+    <option value="Roboto">Roboto</option>
+  </select>
+
+  <br>
+
+  <label for="colorSelect">Select Color:</label>
+  <select id="colorSelect">
+    <option value="black">Black</option>
+    <option value="red">Red</option>
+    <option value="green">Green</option>
+    <option value="blue">Blue</option>
+    <option value="purple">Purple</option>
+    <option value="orange">Orange</option>
+  </select>
+
+  <br>
+
+  <label for="sizeSelect">Select Font Size:</label>
+  <select id="sizeSelect">
+    <option value="16">16</option>
+    <option value="18">18</option>
+    <option value="20">20</option>
+    <option value="24">24</option>
+    <option value="28">28</option>
+    <option value="30">30</option>
+  </select>
+
+  <script>
+    // Function to set default values from Local Storage or set default values
+    function setDefaults() {
+      const fontSelect = document.getElementById('fontSelect');
+      const colorSelect = document.getElementById('colorSelect');
+      const sizeSelect = document.getElementById('sizeSelect');
+
+      // Set default values from Local Storage or set default values
+      fontSelect.value = localStorage.getItem('font') || 'Open';
+      colorSelect.value = localStorage.getItem('color') || 'black';
+      sizeSelect.value = localStorage.getItem('size') || '16';
+
+      // Apply default values to the page
+      applyStyles();
+    }
+
+    // Function to apply selected styles to the page
+    function applyStyles() {
+      const fontSelect = document.getElementById('fontSelect');
+      const colorSelect = document.getElementById('colorSelect');
+      const sizeSelect = document.getElementById('sizeSelect');
+
+      // Apply selected font
+      document.body.style.fontFamily = fontSelect.value;
+
+      // Apply selected color
+      document.body.style.color = colorSelect.value;
+
+      // Apply selected font size
+      document.body.style.fontSize = sizeSelect.value + 'px';
+    }
+
+    // Event listeners to update styles on selection change
+    document.getElementById('fontSelect').addEventListener('change', function () {
+      applyStyles();
+      localStorage.setItem('font', this.value);
+    });
+
+    document.getElementById('colorSelect').addEventListener('change', function () {
+      applyStyles();
+      localStorage.setItem('color', this.value);
+    });
+
+    document.getElementById('sizeSelect').addEventListener('change', function () {
+      applyStyles();
+      localStorage.setItem('size', this.value);
+    });
+
+    // Set default values on page load
+    setDefaults();
+  </script>
+</body>
+</html>
